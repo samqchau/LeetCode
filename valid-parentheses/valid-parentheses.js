@@ -1,6 +1,13 @@
 /**
  * @param {string} s
  * @return {boolean}
+ 
+  Time complexity - O(n)
+  One for loop dependent on the length of the input string
+        
+  Space complexity - O(n)
+  One stack with the maximum size of the length of the string. In cases where all characters are "opening" parenthesis, the stack will be the length of the string
+
  */
 var isValid = function(s) {
     let n = s.length; 
