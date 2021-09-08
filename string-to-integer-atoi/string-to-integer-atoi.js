@@ -8,7 +8,7 @@
  */
 var myAtoi = function(s) {
     let i = 0;
-    let sign = null;
+    let sign = 1;
     let res = 0;
     let max = 2**31 - 1;
     let min = -1 * (2**31);
@@ -24,7 +24,6 @@ var myAtoi = function(s) {
             i++;
         }
         else if(s[i] === '+') {
-            sign = 1;
             i++;
         }
     }
@@ -37,7 +36,7 @@ var myAtoi = function(s) {
         i++;
     }
 
-    if(sign === null || sign === 1) {
+    if(sign === 1) {
         return max < res ? max : res
     } else if(sign === -1) {
         return min > res * -1 ? min : res * -1
