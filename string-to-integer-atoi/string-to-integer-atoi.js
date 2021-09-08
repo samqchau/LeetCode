@@ -1,6 +1,10 @@
 /**
- * @param {string} s
- * @return {number}
+    Time Complexity - O(n)
+    Adjacent while loops all dependent on input 's' length
+    
+    Space Complexity - O(1)
+    Space requirements do not grow with input size
+    
  */
 var myAtoi = function(s) {
     let i = 0;
@@ -33,7 +37,9 @@ var myAtoi = function(s) {
         i++;
     }
 
-    if(sign === -1 && sign * res <= min) return min
-    else if(res >= max && (sign === 1 || sign === null)) return max
-    else return sign === null ? res : sign * res
+    if(sign === null || sign === 1) {
+        return max < res ? max : res
+    } else if(sign === -1) {
+        return min > res * -1 ? min : res * -1
+    }
 };
