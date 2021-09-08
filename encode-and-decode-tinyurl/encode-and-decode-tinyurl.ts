@@ -23,10 +23,11 @@ function generateCode(): string {
 function encode(longUrl: string): string {
     if(urlDB[longUrl]) return  
     let code: string = generateCode();
-    console.log(code)
+    
     while(usedCodesDB[code]) {
         code = generateCode();
     }
+    
     usedCodesDB[code] = longUrl;
     urlDB[longUrl] = code;    
     return `http://tinyurl.com/${code}`
