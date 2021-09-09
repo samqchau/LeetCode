@@ -20,8 +20,7 @@
 function middleNode(head: ListNode | null): ListNode | null {
     let p1:ListNode | null = head;
     let p2:ListNode | null = head;
-    while(p2 !== null) {
-        if(p2.next === null) break;
+    while(p2 !== null && p2.next !== null) {
         p1 = p1.next;
         p2 = p2.next.next;
     }
