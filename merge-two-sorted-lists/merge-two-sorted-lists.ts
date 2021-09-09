@@ -21,7 +21,7 @@ function mergeTwoLists(l1: ListNode | null, l2: ListNode | null): ListNode | nul
     if(l1 === null) return l2
     else if(l2 === null) return l1
     
-    let head = new ListNode(); let curr = head;
+    let head: ListNode = new ListNode(); let curr:ListNode = head;
     
     while(l1 && l2) {
         if(l1.val < l2.val) {
@@ -34,11 +34,6 @@ function mergeTwoLists(l1: ListNode | null, l2: ListNode | null): ListNode | nul
         curr = curr.next;
     }
     
-    if(l1 === null) {
-        curr.next = l2
-    } else if (l2 === null) {
-        curr.next = l1
-    }
-    
+    curr.next = l1 || l2;    
     return head.next
 };
