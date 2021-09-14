@@ -1,0 +1,29 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ 
+ Time Complexity - O(n + m)
+ Two adjacent for loops dependent on input size of nums1 and nums2.
+ 
+ Space Complexity - O(n^2)
+ Uses a stack and hashmap both dependent on the size of nums2.
+ 
+ */
+var nextGreaterElement = function(nums1, nums2) {
+    let map = {};
+    let stack = [];
+    for(let j = 0; j < nums2.length; j++) {
+        while(stack.length > 0 && stack[stack.length - 1] < nums2[j]) {
+            map[stack.pop()] = nums2[j];
+        }
+        stack.push(nums2[j]);
+    }
+    while(stack.length > 0) {
+        map[stack.pop()] = -1;
+    }
+    for(let i = 0; i < nums1.length; i++) {
+        stack.push(map[nums1[i]]);
+    }
+    return stack
+};
