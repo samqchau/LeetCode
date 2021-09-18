@@ -1,6 +1,6 @@
 /*
-    Time Complexity - O(n^2)
-    Iterate over nums array n/2 times.
+    Time Complexity - O(n^3)
+    Three nested for loops
     
     Space Complexity - O(1)
     Space requirements don't change based on nums array input length
