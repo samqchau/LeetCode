@@ -40,6 +40,5 @@ function sumRootToLeaf(root: TreeNode | null): number {
         return sum
     }
     dfs(root);
-    console.log(res)
     return res.reduce((acc,val) => {return acc + binaryToInt(val)}, 0)
 };
