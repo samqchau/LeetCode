@@ -1,0 +1,18 @@
+/*
+    Time Complexity - O(n)
+    Number of constant time function executions increase linearly as input size grows.
+    
+    Space Complexity - O(1)
+    Instead of storing all results, we only store the two values we need.
+*/
+
+function fib(n: number): number {
+    if(n === 0) return 0;
+    let prev:number = 0; let sum:number = 1;
+    for(let i = 1; i < n; i++) {
+        let temp:number = sum;
+        sum += prev;
+        prev = temp;
+    }    
+    return sum;
+};
