@@ -13,7 +13,7 @@
 function canJump(nums: number[]): boolean {    
     let n = nums.length;
     let isJumpable = new Array(n).fill(false);
-    return maxJump(0) ? true : isJumpable[n-1];
+    return maxJump(0);
     
     function maxJump(pos) {
         if(pos >= n - 1) return true;
