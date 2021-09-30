@@ -7,15 +7,21 @@
 */
 
 function jump (nums: number[]): number {
-    let furthestVisited = 0, jumps = 0, target = 0, n = nums.length - 1;
+    let n = nums.length;
+    if(nums.length < 2) return 0;
+    return helper(0);    
     
-    for(let i = 0; i < n; i++) {
-        furthestVisited = Math.max(furthestVisited, i + nums[i]);
-        if(i === target) {
-            target = furthestVisited;
-            jumps++;
+    function helper(pos, cache={}):number {
+        if(pos >= n-1) return 0;
+        if(cache[pos]) return 1 + cache[pos];
+        let res = Number.MAX_SAFE_INTEGER;
+        for(let i = pos + nums[pos]; i > pos; i--) {
+            let jumpsToEnd = helper(i, cache);
+            res = Math.min(jumpsToEnd, res);
+            if(jumpsToEnd === 1) break;            
         }
+        cache[pos] ? cache[pos] = Math.min(res, cache[pos]) : cache[pos] = res;
+        
+        return 1 + cache[pos]
     }
-    
-    return jumps
 };
