@@ -8,20 +8,18 @@
 
 function jump (nums: number[]): number {
     let n = nums.length;
-    if(nums.length < 2) return 0;
-    return helper(0);    
-    
-    function helper(pos, cache={}):number {
-        if(pos >= n-1) return 0;
-        if(cache[pos]) return 1 + cache[pos];
-        let res = Number.MAX_SAFE_INTEGER;
-        for(let i = pos + nums[pos]; i > pos; i--) {
-            let jumpsToEnd = helper(i, cache);
-            res = Math.min(jumpsToEnd, res);
-            if(jumpsToEnd === 1) break;            
+    if(n < 2) return 0
+    let dp = new Array(n).fill(0);
+    let furthest = 0;
+    for(let i = 0; i < n; i++) {
+        let jumpPower = nums[i];
+        for(let j = i + 1; j <= i + jumpPower; j++) {
+            if(j >= n - 1) return dp[i] + 1;
+            if(j > furthest) {
+                dp[j] = dp[i] + 1;
+            }
         }
-        cache[pos] ? cache[pos] = Math.min(res, cache[pos]) : cache[pos] = res;
-        
-        return 1 + cache[pos]
+        furthest = Math.max(furthest, i + jumpPower)
     }
+    return dp[n-1];
 };
