@@ -1,7 +1,3 @@
-/*
-    Place queens
-*/
-
 function solveNQueens(n: number): string[][] {
     let solutions = [];
     for(let i = 0; i < n; i++) {
@@ -14,14 +10,6 @@ function validRow (row, queens) {
     for(let i = 0; i < queens.length; i++) {
         let q = queens[i];
         if(row === q.row) return false;
-    }
-    return true
-}
-
-function validCol(col, queens) {
-    for(let i = 0; i < queens.length; i++) {
-        let q = queens[i];
-        if(col === q.col) return false;
     }
     return true
 }
@@ -48,7 +36,7 @@ function placeQueen(n, res, queens = [], col) {
         return;
     }
     for(let row = 0; row < n; row++) {
-        if(validRow(row, queens) && validCol(col, queens) && validDiag(n, row, col, queens))
+        if(validRow(row, queens) && validDiag(n, row, col, queens))
             placeQueen(n, res, [...queens, {row, col: col}], col + 1);
     }
 }
