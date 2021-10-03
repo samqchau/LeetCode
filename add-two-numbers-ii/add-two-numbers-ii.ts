@@ -6,7 +6,7 @@
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
     l1 = reverseLinkedList(l1); l2 = reverseLinkedList(l2);
     
-    let sum = new ListNode(); let carry = 0; let curr = sum
+    let sum = new ListNode(); let carry = 0; let curr = sum;
     while(l1 && l2) {
         let num = l1.val + l2.val + carry;
         if(num >= 10) {carry = 1; num -= 10;} else {carry = 0;}
