@@ -13,28 +13,37 @@
  
     Time Complexity - O(n)
     Visits every node once
+    Next method and has next are constant time.
     
     Space Complexity - O(n)
     DFS recursive calls are the height of the tree.
+    Store the preorder traversal as an array in our class initialization. O(n)
  */
 
 class BSTIterator {
-    arr = []
+    pointer = 0;
+    arr;
     constructor(root: TreeNode | null) {
-        const DFS = (node) => {
-            if(node === null) return
-            DFS(node.left)
-            this.arr.push(node.val)
-            DFS(node.right)
+        let arr = [];
+        dfs(root);
+        function dfs(node) {
+            if(!node) return
+            if(node.left) dfs(node.left)
+            arr.push(node.val)
+            if(node.right) dfs(node.right);
         }
-        DFS(root);
+        this.arr = arr;
     }
 
     next(): number {
-        return this.arr.shift()
+        if(!this.hasNext()) return;
+        let num = this.arr[this.pointer];
+        this.pointer++;
+        return num
     }
 
     hasNext(): boolean {
-        return this.arr.length > 0
+        if(this.pointer < this.arr.length) return true;
+        else return false
     }
 }
