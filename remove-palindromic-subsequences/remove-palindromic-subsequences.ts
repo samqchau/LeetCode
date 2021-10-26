@@ -1,4 +1,6 @@
 /*
+    **Interpreted the question wrong and wrote a solution for removing longest palindromic substring, not subsequence. Because the entire string is only made of a's and b's, if we remove all the a's, only b's will be left. On the next iteration all b's will be removed therefore the maximum result will only ever be 2. If there were 3, 4, ...k elements instead, the maximum answer would be k.
+    
     Approach
     res = 0
     While string still has length
@@ -16,7 +18,6 @@
     
     Time Complexity - O(n**2)
     Space Complexity - O(n)
-                
 */
 
 function removePalindromeSub(s: string): number {
