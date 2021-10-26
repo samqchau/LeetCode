@@ -26,14 +26,12 @@ function removePalindromeSub(s: string): number {
         for(let j = s.length; j >= 0; j--) {
             for(let i = 0; i < s.length; i++) { 
             let ss = s.substring(i, j);
-                console.log(`ss: ${ss}`)
                 if(isPalindrome(ss)) {
                     let str = ss.split('');
                     str.splice(i, j)
                     s = str.join('');
                     foundPalindrome = true;
                     res++;
-                    console.log(`s: ${s}`)
                     break;
                 }
             }
