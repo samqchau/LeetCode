@@ -10,8 +10,8 @@
     update res to be 0 in all these places
     return res
     
-    Time Complexity - O()
-    Space Complexity - O()
+    Time Complexity - O(n)
+    Space Complexity - O(n)
 */
 
 function nextLargerNodes(head: ListNode | null): number[] {
