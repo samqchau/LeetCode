@@ -1,12 +1,11 @@
 /*
-    Time Complexity - O(n + k + klogk) --> O(n ** 2)
+    Time Complexity - O(logn + k + klogk) --> O(n ** 2)
     Space Complexity - O(k)
 */
 function findClosestElements(arr: number[], k: number, x: number): number[] {
     let res = [];
-    let i = closestIndex(arr, x);
-    res.push(arr[i]); k--;
-    let l = i - 1, r = i + 1;
+    let r = closestIndex(arr, x);
+    let l = r - 1;
     while(k--) {
         if(l >= 0 && r <= arr.length - 1) {
             if(Math.abs(x - arr[l]) <= Math.abs(x - arr[r])) {
@@ -28,12 +27,14 @@ function findClosestElements(arr: number[], k: number, x: number): number[] {
 };
 
 function closestIndex(arr, x) {
-    let min = Infinity, minIndex = -1;
-    for(let i = 0; i < arr.length; i++) {
-        if(Math.abs(x - arr[i]) < min) {
-            min = Math.abs(x - arr[i]);
-            minIndex = i;
+    let l = 0, r = arr.length - 1;
+    while(l < r) {
+        let mid = Math.floor(l + (r-l)/2)
+        if(arr[mid] >= x) {
+            r = mid;
+        } else {
+            l = mid + 1;
         }
     }
-    return minIndex;
+    return l
 }
