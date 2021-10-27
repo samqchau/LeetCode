@@ -1,29 +1,41 @@
 /*
-    Time Complexity - O(n**2)
-    Space Compelxity - O(n)
+    Approach
+    Convert the entire linked list to an array {time: n, space: n}
+    for every number (i = 0; i < arr.length; i++) {time: n space: 1}
+        while (the stack has elements waiting for a larger value and the top value is less than the current number)
+            let e = stack.pop(), e needs value for comparison and idx for modifying the correct place in results
+            set the results array[index] to arr[i];
+        stack.push([arr[i], i])
+    every e left in the stack has no greater value.
+    update res to be 0 in all these places
+    return res
+    
+    Time Complexity - O()
+    Space Complexity - O()
 */
 
-function nextLargerNodes(head): number[] {
-    let curr = head, prev = null, temp = curr;
-    while(curr) {
-        curr.prev = prev;
-        prev = curr;
-        curr = curr.next;
-    }
-    let ans = [], stack = [];
+function nextLargerNodes(head: ListNode | null): number[] {
+    if(!head) return []
+    let arr = []
     
-    while(prev) {
-        let val = prev.val, res = null
-        for(let i = 0; i < stack.length; i++) {
-            if(stack[i] > val) {
-                res = stack[i]
-                break;
-            }
-        }
-        if(res) ans.unshift(res);
-        else ans.unshift(0);
-        stack.unshift(val);
-        prev = prev.prev;
+    while(head) {
+        arr.push(head.val);
+        head = head.next;
     }
-    return ans
+    
+    let stack = [], res = [];
+    
+    for(let i = 0; i < arr.length; i++) {
+        while(stack.length > 0 && stack[stack.length - 1][0] < arr[i]) {
+            let idx = stack.pop()[1];
+            res[idx] = arr[i];
+        }
+        stack.push([arr[i], i]);
+    }
+    
+    while(stack.length) {
+        let node = stack.pop();
+        res[node[1]] = 0
+    }
+    return res
 };
