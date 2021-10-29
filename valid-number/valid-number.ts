@@ -1,17 +1,5 @@
 /*
-    Approach
-    Write functions that check if the character is valid or not
-    Namely, the +, -, e, E, .
-    
-    If Special Character
-        if + || -
-        else if E || e
-        else .
-    else if function charIsNumber
-        i++
-    else invalid character return false
-    
-    Time Complexity - O(n + n) --> O(n)
+    Time Complexity - O(n)
     Space Complexity - O(1)
 */
 
