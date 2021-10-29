@@ -4,14 +4,6 @@
 */
 
 function isNumber(s: string): boolean {
-    let validChars = {
-        '+': true,
-        '-': true,
-        'e': true,
-        'E': true,
-        '.': true,
-    }
-    
     let i = 0, n = s.length;
     let foundE = false, foundDecimal = false, foundNumber = false;
 
@@ -22,32 +14,27 @@ function isNumber(s: string): boolean {
     
     while (i < n) {
         let char = s[i];
-        if(validChars[s[i]]) {        
-            if(char === 'e' || char === 'E') {
-                if(foundE || !foundNumber) return false
-                if(validE(s, i, foundNumber))
-                {
-                    foundE = true; foundDecimal = true;
-                    i++;
-                    if(s[i] === '+' || s[i] === '-') {
-                        if(validSign(s, i)) {
-                            i++;
-                        } else return false;
-                    }
-                } else return false
-            } 
-            else if (char === '.') {
-                if(foundDecimal) return false
-                if(validDecimal(s, i, foundNumber)) {
-                    foundDecimal = true;
-                    i++;
-                } else return false                
-            } else return false 
+        if(char === 'e' || char === 'E') {
+            if(foundE || !foundNumber) return false
+            if(validE(s, i, foundNumber)) {
+                foundE = true; foundDecimal = true;
+                i++;
+                if(s[i] === '+' || s[i] === '-') {
+                    if(validSign(s, i)) {
+                        i++;
+                    } else return false;
+                }
+            } else return false
+        } else if (char === '.') {
+            if(foundDecimal) return false
+            if(validDecimal(s, i, foundNumber)) {
+                foundDecimal = true;
+                i++;
+            } else return false                
         } else if (validNumber(char)) {
             foundNumber = true;
             i++;
-        }
-        else return false
+        } else return false
     }
     return true
 };
