@@ -2,10 +2,16 @@
  * @param {number[]} nums
  * @return {number}
 */
-var rob = function(nums, i = 0, profits = 0, memo = {}) {
-    if(memo[i] !== undefined) return memo[i]
-    if (i > nums.length - 1) return 0
-    let skipHouse = rob(nums, i + 1, profits + nums[i + 1], memo)
-    let robHouse = rob(nums, i + 2, profits + nums[i], memo) + nums[i]
-    return memo[i] = Math.max(robHouse, skipHouse)
+var rob = function(nums) {
+    let dp = new Array(nums.length).fill(0);
+    if(nums.length === 1) return nums[0]
+    else if (nums.length === 2) return Math.max(nums[0], nums[1])
+    else if(nums.length === 3) return Math.max(nums[0] + nums[2] , nums[1]);
+    
+    dp[0] = nums[0]
+    dp[1] = Math.max(nums[0], nums[1]);
+    for(let i = 2; i < nums.length; i++) {
+        dp[i] = Math.max(dp[i-2] + nums[i], dp[i-1])
+    }
+    return dp[dp.length - 1]
 };
