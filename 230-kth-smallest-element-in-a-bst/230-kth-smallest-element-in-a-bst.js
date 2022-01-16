@@ -10,17 +10,6 @@
  * @param {TreeNode} root
  * @param {number} k
  * @return {number}
- 
- iterative without recursion
- use stack
- 
- we want to go left until no more left nodes, this is the smallest element,
- 
- if k = 1 then return this node.val 
- k = 2 wants the parent
- k = 3 wants the right
- 
- 
  */
 var kthSmallest = function(node, k) {
     let stack = [];
