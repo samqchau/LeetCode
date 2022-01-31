@@ -3,7 +3,9 @@ var numIslands = function(grid) {
     
     for(let row = 0; row < n; row++) {
         for(let col = 0; col < m; col++) {
-            numIslands += dfs(col, row)
+            if(grid[row][col] === '1') {
+                numIslands += dfs(col, row)
+            }
         }
     }
     
