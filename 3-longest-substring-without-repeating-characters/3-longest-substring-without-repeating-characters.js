@@ -1,7 +1,5 @@
 var lengthOfLongestSubstring = function(s) {
     if(s.length === 0) return 0
-    else if (s.length === 1) return 1
-    
     let l = 0, r = 0, longest = 1, chars = {};
 
     while(l < s.length && r < s.length) {
@@ -14,6 +12,5 @@ var lengthOfLongestSubstring = function(s) {
             l++;
         }
     }
-    return longest
-    
+    return longest  
 };
