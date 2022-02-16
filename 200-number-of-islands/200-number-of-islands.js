@@ -23,7 +23,7 @@ var numIslands = function(grid) {
         dfs(x + 1, y, visiting)
         dfs(x, y - 1, visiting)
         dfs(x, y + 1, visiting)
-        delete visiting[key]
+        visiting[key] = false
         visited[key] = true
         
         return 1
